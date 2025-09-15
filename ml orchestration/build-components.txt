@@ -1,0 +1,14 @@
+# Preprocessing
+docker build -t iris-preprocess:latest -f .\components\Dockerfile.preprocess .\components
+
+# Training
+docker build -t iris-train:latest -f .\components\Dockerfile.train .\components
+
+# Evaluation
+docker build -t iris-evaluate:latest -f .\components\Dockerfile.evaluate .\components
+
+# Save
+docker build -t iris-save:latest -f .\components\Dockerfile.save .\components
+
+# Deploy
+docker build -t iris-deploy:latest -f .\components\Dockerfile.deploy .\components

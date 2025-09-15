@@ -1,0 +1,7 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY evaluate_model.py /app/evaluate_model.py
+COPY data_preprocessing.py /app/data_preprocessing.py
+COPY train_model.py /app/train_model.py
+RUN pip install --no-cache-dir scikit-learn joblib pandas
+CMD ["python", "evaluate_model.py"]

@@ -1,0 +1,6 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY save_model.py /app/save_model.py
+COPY train_model.py /app/train_model.py
+RUN pip install --no-cache-dir scikit-learn joblib
+CMD ["python", "save_model.py"]

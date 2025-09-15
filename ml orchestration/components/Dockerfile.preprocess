@@ -1,0 +1,5 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY data_preprocessing.py /app/data_preprocessing.py
+RUN pip install --no-cache-dir scikit-learn joblib pandas
+CMD ["python", "data_preprocessing.py"]

@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+# Set workdir
+WORKDIR /app
+
+# Copy component scripts
+COPY . /app
+
+# Install dependencies
+RUN pip install --no-cache-dir scikit-learn pandas joblib kfp
+
+# Default command (can be overridden in Kubeflow)
+CMD ["python3"]
