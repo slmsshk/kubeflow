@@ -1,0 +1,1992 @@
+Folder PATH listing
+Volume serial number is A087-C57B
+C:.
+|   .gitattributes
+|   .gitignore
+|   .pre-commit-config.yaml
+|   .shellcheckrc
+|   .yamllint.yaml
+|   architecture.svg
+|   CONTRIBUTING.md
+|   LICENSE
+|   OWNERS
+|   README.md
+|   SECURITY.md
+|   X.TXT
+|   
++---.github
+|   |   PULL_REQUEST_TEMPLATE.md
+|   |   
+|   +---ISSUE_TEMPLATE
+|   |       config.yml
+|   |       issue-report.yml
+|   |       
+|   \---workflows
+|           admission_webhook_test.yaml
+|           centraldashboard_test.yaml
+|           dex_oauth2-proxy_test.yaml
+|           full_kubeflow_integration_test.yaml
+|           helm-kustomize-comparison.yml
+|           istio_validation.yaml
+|           jupyter_web_application_test.yaml
+|           katib-helm-kustomize-comparison.yaml
+|           katib_test.yaml
+|           kserve-models-web-app-comparison.yml
+|           kserve_jwt_authentication_test.yaml
+|           kserve_secure_test.yaml
+|           kserve_test.yaml
+|           linting_bash_python_yaml_files.yaml
+|           manifests_example_test.yaml
+|           model_registry_test.yaml
+|           notebook_controller_test.yaml
+|           pipeline_run_from_notebook.yaml
+|           pipeline_swfs_test.yaml
+|           pipeline_test.yaml
+|           profiles_test.yaml
+|           ray_test.yaml
+|           spark_test.yaml
+|           stale.yaml
+|           tensorboards_web_application_test.yaml
+|           tensorboard_controller_test.yaml
+|           trainer_test.yaml
+|           training_operator_test.yaml
+|           trivy.yaml
+|           volumes_web_application_test.yaml
+|           
++---applications
+|   +---admission-webhook
+|   |   \---upstream
+|   |       +---base
+|   |       |       cluster-role-binding.yaml
+|   |       |       cluster-role.yaml
+|   |       |       crd.yaml
+|   |       |       deployment.yaml
+|   |       |       kustomization.yaml
+|   |       |       mutating-webhook-configuration.yaml
+|   |       |       params.yaml
+|   |       |       service-account.yaml
+|   |       |       service.yaml
+|   |       |       
+|   |       \---overlays
+|   |           \---cert-manager
+|   |                   certificate.yaml
+|   |                   deployment.yaml
+|   |                   kustomization.yaml
+|   |                   mutating-webhook-configuration.yaml
+|   |                   params.yaml
+|   |                   
+|   +---centraldashboard
+|   |   +---overlays
+|   |   |   \---oauth2-proxy
+|   |   |           kustomization.yaml
+|   |   |           
+|   |   \---upstream
+|   |       +---base
+|   |       |       clusterrole-binding.yaml
+|   |       |       clusterrole.yaml
+|   |       |       configmap.yaml
+|   |       |       deployment.yaml
+|   |       |       kustomization.yaml
+|   |       |       params.env
+|   |       |       role-binding.yaml
+|   |       |       role.yaml
+|   |       |       service-account.yaml
+|   |       |       service.yaml
+|   |       |       
+|   |       \---overlays
+|   |           +---istio
+|   |           |       authorizationpolicy.yaml
+|   |           |       kustomization.yaml
+|   |           |       params.yaml
+|   |           |       virtual-service.yaml
+|   |           |       
+|   |           \---kserve
+|   |               |   kustomization.yaml
+|   |               |   
+|   |               \---patches
+|   |                       configmap.yaml
+|   |                       
+|   +---jupyter
+|   |   +---jupyter-web-app
+|   |   |   \---upstream
+|   |   |       +---base
+|   |   |       |   |   cluster-role-binding.yaml
+|   |   |       |   |   cluster-role.yaml
+|   |   |       |   |   deployment.yaml
+|   |   |       |   |   kustomization.yaml
+|   |   |       |   |   params.env
+|   |   |       |   |   role-binding.yaml
+|   |   |       |   |   role.yaml
+|   |   |       |   |   service-account.yaml
+|   |   |       |   |   service.yaml
+|   |   |       |   |   
+|   |   |       |   \---configs
+|   |   |       |           logos-configmap.yaml
+|   |   |       |           spawner_ui_config.yaml
+|   |   |       |           
+|   |   |       \---overlays
+|   |   |           \---istio
+|   |   |                   authorization-policy.yaml
+|   |   |                   destination-rule.yaml
+|   |   |                   kustomization.yaml
+|   |   |                   params.yaml
+|   |   |                   virtual-service.yaml
+|   |   |                   
+|   |   \---notebook-controller
+|   |       \---upstream
+|   |           |   README.md
+|   |           |   
+|   |           +---base
+|   |           |       kustomization.yaml
+|   |           |       
+|   |           +---crd
+|   |           |   |   kustomization.yaml
+|   |           |   |   kustomizeconfig.yaml
+|   |           |   |   
+|   |           |   +---bases
+|   |           |   |       kubeflow.org_notebooks.yaml
+|   |           |   |       
+|   |           |   \---patches
+|   |           |           cainjection_in_notebooks.yaml
+|   |           |           trivial_conversion_patch.yaml
+|   |           |           validation_patches.yaml
+|   |           |           webhook_in_notebooks.yaml
+|   |           |           
+|   |           +---default
+|   |           |       kustomization.yaml
+|   |           |       manager_auth_proxy_patch.yaml
+|   |           |       manager_image_patch.yaml
+|   |           |       manager_prometheus_metrics_patch.yaml
+|   |           |       manager_webhook_patch.yaml
+|   |           |       webhookcainjection_patch.yaml
+|   |           |       
+|   |           +---manager
+|   |           |       kustomization.yaml
+|   |           |       manager.yaml
+|   |           |       params.env
+|   |           |       service-account.yaml
+|   |           |       service.yaml
+|   |           |       
+|   |           +---overlays
+|   |           |   +---kubeflow
+|   |           |   |   |   kustomization.yaml
+|   |           |   |   |   
+|   |           |   |   \---patches
+|   |           |   |           remove-namespace.yaml
+|   |           |   |           
+|   |           |   \---standalone
+|   |           |           kustomization.yaml
+|   |           |           
+|   |           +---rbac
+|   |           |       auth_proxy_role.yaml
+|   |           |       auth_proxy_role_binding.yaml
+|   |           |       auth_proxy_service.yaml
+|   |           |       kustomization.yaml
+|   |           |       leader_election_role.yaml
+|   |           |       leader_election_role_binding.yaml
+|   |           |       role.yaml
+|   |           |       role_binding.yaml
+|   |           |       user_cluster_roles.yaml
+|   |           |       
+|   |           \---samples
+|   |                   _v1alpha1_notebook.yaml
+|   |                   _v1beta1_notebook.yaml
+|   |                   _v1_notebook.yaml
+|   |                   
+|   +---katib
+|   |   \---upstream
+|   |       +---components
+|   |       |   +---controller
+|   |       |   |       controller.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       rbac.yaml
+|   |       |   |       service.yaml
+|   |       |   |       trial-templates.yaml
+|   |       |   |       
+|   |       |   +---crd
+|   |       |   |       experiment.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       suggestion.yaml
+|   |       |   |       trial.yaml
+|   |       |   |       
+|   |       |   +---db-manager
+|   |       |   |       db-manager.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       service.yaml
+|   |       |   |       
+|   |       |   +---mysql
+|   |       |   |       kustomization.yaml
+|   |       |   |       mysql.yaml
+|   |       |   |       pvc.yaml
+|   |       |   |       secret.yaml
+|   |       |   |       service.yaml
+|   |       |   |       
+|   |       |   +---namespace
+|   |       |   |       kustomization.yaml
+|   |       |   |       namespace.yaml
+|   |       |   |       
+|   |       |   +---postgres
+|   |       |   |       kustomization.yaml
+|   |       |   |       postgres.yaml
+|   |       |   |       pvc.yaml
+|   |       |   |       secret.yaml
+|   |       |   |       service.yaml
+|   |       |   |       
+|   |       |   +---ui
+|   |       |   |       kustomization.yaml
+|   |       |   |       rbac.yaml
+|   |       |   |       service.yaml
+|   |       |   |       ui.yaml
+|   |       |   |       
+|   |       |   \---webhook
+|   |       |           kustomization.yaml
+|   |       |           webhooks.yaml
+|   |       |           
+|   |       \---installs
+|   |           +---katib-cert-manager
+|   |           |   |   certificate.yaml
+|   |           |   |   katib-config.yaml
+|   |           |   |   kustomization.yaml
+|   |           |   |   params.yaml
+|   |           |   |   
+|   |           |   \---patches
+|   |           |           katib-cert-injection.yaml
+|   |           |           
+|   |           +---katib-external-db
+|   |           |   |   katib-config.yaml
+|   |           |   |   kustomization.yaml
+|   |           |   |   secrets.env
+|   |           |   |   
+|   |           |   \---patches
+|   |           |           db-manager.yaml
+|   |           |           
+|   |           +---katib-leader-election
+|   |           |       katib-config.yaml
+|   |           |       kustomization.yaml
+|   |           |       leader-election-rbac.yaml
+|   |           |       
+|   |           +---katib-openshift
+|   |           |   |   katib-config.yaml
+|   |           |   |   kustomization.yaml
+|   |           |   |   
+|   |           |   \---patches
+|   |           |           service-serving-cert.yaml
+|   |           |           webhook-inject-cabundle.yaml
+|   |           |           
+|   |           +---katib-standalone
+|   |           |       katib-config.yaml
+|   |           |       kustomization.yaml
+|   |           |       
+|   |           +---katib-standalone-postgres
+|   |           |   |   katib-config.yaml
+|   |           |   |   kustomization.yaml
+|   |           |   |   
+|   |           |   \---patches
+|   |           |           db-manager.yaml
+|   |           |           
+|   |           \---katib-with-kubeflow
+|   |               |   istio-authorizationpolicy.yaml
+|   |               |   kubeflow-katib-roles.yaml
+|   |               |   kustomization.yaml
+|   |               |   params.yaml
+|   |               |   ui-virtual-service.yaml
+|   |               |   
+|   |               \---patches
+|   |                       enable-ui-authz-checks.yaml
+|   |                       istio-sidecar-injection.yaml
+|   |                       remove-namespace.yaml
+|   |                       ui-rbac.yaml
+|   |                       
+|   +---kserve
+|   |   |   Makefile
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   UPGRADE.md
+|   |   |   
+|   |   +---assets
+|   |   |       kserve.png
+|   |   |       kserve_new.png
+|   |   |       
+|   |   +---kserve
+|   |   |       aggregated-roles.yaml
+|   |   |       kserve-cluster-resources.yaml
+|   |   |       kserve.yaml
+|   |   |       kserve_kubeflow.yaml
+|   |   |       kustomization.yaml
+|   |   |       params.env
+|   |   |       
+|   |   \---models-web-app
+|   |       +---base
+|   |       |       deployment.yaml
+|   |       |       istio.yaml
+|   |       |       kustomization.yaml
+|   |       |       rbac.yaml
+|   |       |       service.yaml
+|   |       |       
+|   |       \---overlays
+|   |           \---kubeflow
+|   |               |   kustomization.yaml
+|   |               |   params.yaml
+|   |               |   web-app-authorization-policy.yaml
+|   |               |   
+|   |               \---patches
+|   |                       web-app-sidecar.yaml
+|   |                       web-app-vsvc.yaml
+|   |                       
+|   +---model-registry
+|   |   \---upstream
+|   |       |   OWNERS
+|   |       |   README.md
+|   |       |   
+|   |       +---base
+|   |       |       kustomization.yaml
+|   |       |       model-registry-configmap.yaml
+|   |       |       model-registry-deployment.yaml
+|   |       |       model-registry-sa.yaml
+|   |       |       model-registry-service.yaml
+|   |       |       
+|   |       +---options
+|   |       |   +---catalog
+|   |       |   |       deployment.yaml
+|   |       |   |       hf-sources-example.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       README.md
+|   |       |   |       sample-catalog.yaml
+|   |       |   |       service.yaml
+|   |       |   |       sources.yaml
+|   |       |   |       
+|   |       |   +---controller
+|   |       |   |   +---default
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       manager_metrics_patch.yaml
+|   |       |   |   |       metrics_service.yaml
+|   |       |   |   |       
+|   |       |   |   +---manager
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       manager.yaml
+|   |       |   |   |       
+|   |       |   |   +---network-policy
+|   |       |   |   |       allow-metrics-traffic.yaml
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       
+|   |       |   |   +---overlays
+|   |       |   |   |   \---base
+|   |       |   |   |           kustomization.yaml
+|   |       |   |   |           params.env
+|   |       |   |   |           replacements.yaml
+|   |       |   |   |           
+|   |       |   |   +---prometheus
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       monitor.yaml
+|   |       |   |   |       
+|   |       |   |   \---rbac
+|   |       |   |           kustomization.yaml
+|   |       |   |           leader_election_role.yaml
+|   |       |   |           leader_election_role_binding.yaml
+|   |       |   |           metrics_auth_role.yaml
+|   |       |   |           metrics_auth_role_binding.yaml
+|   |       |   |           metrics_reader_role.yaml
+|   |       |   |           role.yaml
+|   |       |   |           role_binding.yaml
+|   |       |   |           service_account.yaml
+|   |       |   |           
+|   |       |   +---csi
+|   |       |   |       clusterstoragecontainer.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---istio
+|   |       |   |       destination-rule.yaml
+|   |       |   |       istio-authorization-policy.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       virtual-service.yaml
+|   |       |   |       
+|   |       |   \---ui
+|   |       |       +---base
+|   |       |       |       kustomization.yaml
+|   |       |       |       model-registry-ui-deployment.yaml
+|   |       |       |       model-registry-ui-role.yaml
+|   |       |       |       model-registry-ui-service-account.yaml
+|   |       |       |       model-registry-ui-service.yaml
+|   |       |       |       
+|   |       |       \---overlays
+|   |       |           +---istio
+|   |       |           |       authorization-policy-ui.yaml
+|   |       |           |       destination-rule-ui.yaml
+|   |       |           |       kustomization.yaml
+|   |       |           |       model-registry-ui-service.yaml
+|   |       |           |       virtual-service.yaml
+|   |       |           |       
+|   |       |           +---kubeflow
+|   |       |           |       kustomization.yaml
+|   |       |           |       model-registry-ui-deployment.yaml
+|   |       |           |       
+|   |       |           \---standalone
+|   |       |                   auth-proxy-configmap.yaml
+|   |       |                   kubeflow-dashboard-rbac.yaml
+|   |       |                   kustomization.yaml
+|   |       |                   model-registry-ui-deployment.yaml
+|   |       |                   model-registry-ui-service.yaml
+|   |       |                   
+|   |       \---overlays
+|   |           +---db
+|   |           |   |   kustomization.yaml
+|   |           |   |   model-registry-db-deployment.yaml
+|   |           |   |   model-registry-db-pvc.yaml
+|   |           |   |   model-registry-db-service.yaml
+|   |           |   |   params.env
+|   |           |   |   secrets.env
+|   |           |   |   
+|   |           |   \---patches
+|   |           |           model-registry-deployment.yaml
+|   |           |           
+|   |           \---postgres
+|   |               |   kustomization.yaml
+|   |               |   model-registry-db-deployment.yaml
+|   |               |   model-registry-db-pvc.yaml
+|   |               |   model-registry-db-service.yaml
+|   |               |   params.env
+|   |               |   secrets.env
+|   |               |   
+|   |               \---patches
+|   |                       model-registry-deployment.yaml
+|   |                       
+|   +---pipeline
+|   |   \---upstream
+|   |       |   gcp-workload-identity-setup.sh
+|   |       |   Makefile
+|   |       |   OWNERS
+|   |       |   README.md
+|   |       |   wi-utils.sh
+|   |       |   
+|   |       +---base
+|   |       |   +---application
+|   |       |   |       application.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---cache
+|   |       |   |       cache-deployment.yaml
+|   |       |   |       cache-role.yaml
+|   |       |   |       cache-rolebinding.yaml
+|   |       |   |       cache-sa.yaml
+|   |       |   |       cache-service.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---cache-deployer
+|   |       |   |   |   cache-deployer-deployment.yaml
+|   |       |   |   |   cache-deployer-role.yaml
+|   |       |   |   |   cache-deployer-rolebinding.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   
+|   |       |   |   \---cluster-scoped
+|   |       |   |           cache-deployer-clusterrole.yaml
+|   |       |   |           cache-deployer-clusterrolebinding.yaml
+|   |       |   |           cache-deployer-sa.yaml
+|   |       |   |           kustomization.yaml
+|   |       |   |           
+|   |       |   +---crds
+|   |       |   |       kustomization.yaml
+|   |       |   |       pipelines.kubeflow.org_pipelines.yaml
+|   |       |   |       pipelines.kubeflow.org_pipelineversions.yaml
+|   |       |   |       
+|   |       |   +---installs
+|   |       |   |   +---generic
+|   |       |   |   |   |   kustomization.yaml
+|   |       |   |   |   |   mysql-secret.yaml
+|   |       |   |   |   |   params.yaml
+|   |       |   |   |   |   pipeline-install-config.yaml
+|   |       |   |   |   |   
+|   |       |   |   |   \---postgres
+|   |       |   |   |           kustomization.yaml
+|   |       |   |   |           params.yaml
+|   |       |   |   |           pipeline-install-config.yaml
+|   |       |   |   |           postgres-secret-extended.yaml
+|   |       |   |   |           
+|   |       |   |   \---multi-user
+|   |       |   |       |   istio-authorization-config.yaml
+|   |       |   |       |   kustomization.yaml
+|   |       |   |       |   params.yaml
+|   |       |   |       |   view-edit-cluster-roles.yaml
+|   |       |   |       |   virtual-service.yaml
+|   |       |   |       |   
+|   |       |   |       +---api-service
+|   |       |   |       |       cluster-role-binding.yaml
+|   |       |   |       |       cluster-role.yaml
+|   |       |   |       |       deployment-patch.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       params.env
+|   |       |   |       |       
+|   |       |   |       +---cache
+|   |       |   |       |       cluster-role-binding.yaml
+|   |       |   |       |       cluster-role.yaml
+|   |       |   |       |       deployment-patch.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       
+|   |       |   |       +---metadata-writer
+|   |       |   |       |       cluster-role-binding.yaml
+|   |       |   |       |       cluster-role.yaml
+|   |       |   |       |       deployment-patch.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       
+|   |       |   |       +---persistence-agent
+|   |       |   |       |       cluster-role-binding.yaml
+|   |       |   |       |       cluster-role.yaml
+|   |       |   |       |       deployment-patch.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       
+|   |       |   |       +---pipelines-profile-controller
+|   |       |   |       |       decorator-controller.yaml
+|   |       |   |       |       deployment.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       params.env
+|   |       |   |       |       requirements-dev.txt
+|   |       |   |       |       run_tests.sh
+|   |       |   |       |       service.yaml
+|   |       |   |       |       sync.py
+|   |       |   |       |       test_sync.py
+|   |       |   |       |       
+|   |       |   |       +---pipelines-ui
+|   |       |   |       |       cluster-role-binding.yaml
+|   |       |   |       |       cluster-role.yaml
+|   |       |   |       |       configmap-patch.yaml
+|   |       |   |       |       deployment-patch.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       
+|   |       |   |       +---scheduled-workflow
+|   |       |   |       |       cluster-role-binding.yaml
+|   |       |   |       |       cluster-role.yaml
+|   |       |   |       |       deployment-patch.yaml
+|   |       |   |       |       kustomization.yaml
+|   |       |   |       |       
+|   |       |   |       \---viewer-controller
+|   |       |   |               cluster-role-binding.yaml
+|   |       |   |               cluster-role.yaml
+|   |       |   |               deployment-patch.yaml
+|   |       |   |               kustomization.yaml
+|   |       |   |               
+|   |       |   +---metadata
+|   |       |   |   +---base
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       metadata-envoy-deployment.yaml
+|   |       |   |   |       metadata-envoy-service.yaml
+|   |       |   |   |       metadata-grpc-configmap.yaml
+|   |       |   |   |       metadata-grpc-deployment.yaml
+|   |       |   |   |       metadata-grpc-sa.yaml
+|   |       |   |   |       metadata-grpc-service.yaml
+|   |       |   |   |       
+|   |       |   |   +---options
+|   |       |   |   |   \---istio
+|   |       |   |   |           destination-rule.yaml
+|   |       |   |   |           istio-authorization-policy.yaml
+|   |       |   |   |           kustomization.yaml
+|   |       |   |   |           virtual-service.yaml
+|   |       |   |   |           
+|   |       |   |   \---overlays
+|   |       |   |       +---db
+|   |       |   |       |   |   kustomization.yaml
+|   |       |   |       |   |   metadata-db-deployment.yaml
+|   |       |   |       |   |   metadata-db-pvc.yaml
+|   |       |   |       |   |   metadata-db-service.yaml
+|   |       |   |       |   |   params.env
+|   |       |   |       |   |   secrets.env
+|   |       |   |       |   |   
+|   |       |   |       |   \---patches
+|   |       |   |       |           metadata-grpc-deployment.yaml
+|   |       |   |       |           
+|   |       |   |       \---postgres
+|   |       |   |           |   kustomization.yaml
+|   |       |   |           |   metadata-db-deployment.yaml
+|   |       |   |           |   metadata-db-pvc.yaml
+|   |       |   |           |   metadata-db-service.yaml
+|   |       |   |           |   params.env
+|   |       |   |           |   secrets.env
+|   |       |   |           |   
+|   |       |   |           \---patches
+|   |       |   |                   metadata-grpc-deployment.yaml
+|   |       |   |                   
+|   |       |   +---pipeline
+|   |       |   |   |   container-builder-sa.yaml
+|   |       |   |   |   kfp-launcher-configmap.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   ml-pipeline-apiserver-deployment.yaml
+|   |       |   |   |   ml-pipeline-apiserver-role.yaml
+|   |       |   |   |   ml-pipeline-apiserver-rolebinding.yaml
+|   |       |   |   |   ml-pipeline-apiserver-sa.yaml
+|   |       |   |   |   ml-pipeline-apiserver-service.yaml
+|   |       |   |   |   ml-pipeline-persistenceagent-deployment.yaml
+|   |       |   |   |   ml-pipeline-persistenceagent-role.yaml
+|   |       |   |   |   ml-pipeline-persistenceagent-rolebinding.yaml
+|   |       |   |   |   ml-pipeline-persistenceagent-sa.yaml
+|   |       |   |   |   ml-pipeline-scheduledworkflow-deployment.yaml
+|   |       |   |   |   ml-pipeline-scheduledworkflow-role.yaml
+|   |       |   |   |   ml-pipeline-scheduledworkflow-rolebinding.yaml
+|   |       |   |   |   ml-pipeline-scheduledworkflow-sa.yaml
+|   |       |   |   |   ml-pipeline-ui-configmap.yaml
+|   |       |   |   |   ml-pipeline-ui-deployment.yaml
+|   |       |   |   |   ml-pipeline-ui-role.yaml
+|   |       |   |   |   ml-pipeline-ui-rolebinding.yaml
+|   |       |   |   |   ml-pipeline-ui-sa.yaml
+|   |       |   |   |   ml-pipeline-ui-service.yaml
+|   |       |   |   |   ml-pipeline-viewer-crd-deployment.yaml
+|   |       |   |   |   ml-pipeline-viewer-crd-role.yaml
+|   |       |   |   |   ml-pipeline-viewer-crd-rolebinding.yaml
+|   |       |   |   |   ml-pipeline-viewer-crd-sa.yaml
+|   |       |   |   |   ml-pipeline-visualization-deployment.yaml
+|   |       |   |   |   ml-pipeline-visualization-sa.yaml
+|   |       |   |   |   ml-pipeline-visualization-service.yaml
+|   |       |   |   |   pipeline-runner-role.yaml
+|   |       |   |   |   pipeline-runner-rolebinding.yaml
+|   |       |   |   |   pipeline-runner-sa.yaml
+|   |       |   |   |   viewer-sa.yaml
+|   |       |   |   |   
+|   |       |   |   +---cluster-scoped
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       scheduled-workflow-crd.yaml
+|   |       |   |   |       viewer-crd.yaml
+|   |       |   |   |       
+|   |       |   |   \---metadata-writer
+|   |       |   |           kustomization.yaml
+|   |       |   |           metadata-writer-deployment.yaml
+|   |       |   |           metadata-writer-role.yaml
+|   |       |   |           metadata-writer-rolebinding.yaml
+|   |       |   |           metadata-writer-sa.yaml
+|   |       |   |           
+|   |       |   +---postgresql
+|   |       |   |   +---cache
+|   |       |   |   |       cache-deployment-patch.yaml
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       
+|   |       |   |   \---pipeline
+|   |       |   |           kustomization.yaml
+|   |       |   |           ml-pipeline-apiserver-deployment-patch.yaml
+|   |       |   |           
+|   |       |   \---webhook
+|   |       |           kustomization.yaml
+|   |       |           params.yaml
+|   |       |           pipelineversion-mutating-webhook-config.yaml
+|   |       |           pipelineversion-validating-webhook-config.yaml
+|   |       |           
+|   |       +---cluster-scoped-resources
+|   |       |       kustomization.yaml
+|   |       |       namespace.yaml
+|   |       |       params.yaml
+|   |       |       
+|   |       +---env
+|   |       |   +---aws
+|   |       |   |       aws-configuration-pipeline-patch.yaml
+|   |       |   |       aws-configuration-pipeline-ui-patch.yaml
+|   |       |   |       config
+|   |       |   |       kustomization.yaml
+|   |       |   |       minio-artifact-secret-patch.env
+|   |       |   |       params.env
+|   |       |   |       README.md
+|   |       |   |       secret.env
+|   |       |   |       viewer-pod-template.json
+|   |       |   |       
+|   |       |   +---azure
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   mysql-secret.env
+|   |       |   |   |   params.env
+|   |       |   |   |   readme.md
+|   |       |   |   |   
+|   |       |   |   \---minio-azure-gateway
+|   |       |   |           kustomization.yaml
+|   |       |   |           minio-artifact-secret.env
+|   |       |   |           minio-azure-gateway-deployment.yaml
+|   |       |   |           minio-azure-gateway-service.yaml
+|   |       |   |           
+|   |       |   +---cert-manager
+|   |       |   |   +---base
+|   |       |   |   |       cache-cert-issuer.yaml
+|   |       |   |   |       cache-cert.yaml
+|   |       |   |   |       cache-webhook-config.yaml
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       params.yaml
+|   |       |   |   |       
+|   |       |   |   +---base-webhook-certs
+|   |       |   |   |       kfp-api-cert-issuer.yaml
+|   |       |   |   |       kfp-api-cert.yaml
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       params.yaml
+|   |       |   |   |       
+|   |       |   |   +---cluster-scoped-resources
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       
+|   |       |   |   +---dev
+|   |       |   |   |       delete-cache-deployer.yaml
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       namespace.yaml
+|   |       |   |   |       params.yaml
+|   |       |   |   |       
+|   |       |   |   +---platform-agnostic-k8s-native
+|   |       |   |   |   |   kustomization.yaml
+|   |       |   |   |   |   
+|   |       |   |   |   \---patches
+|   |       |   |   |           deployment.yaml
+|   |       |   |   |           mutating-webhook.yaml
+|   |       |   |   |           role.yaml
+|   |       |   |   |           service.json
+|   |       |   |   |           validating-webhook.yaml
+|   |       |   |   |           
+|   |       |   |   +---platform-agnostic-multi-user
+|   |       |   |   |   |   kustomization.yaml
+|   |       |   |   |   |   
+|   |       |   |   |   \---patches
+|   |       |   |   |           delete.clusterrole.cache-deployer.yaml
+|   |       |   |   |           delete.crb.cache-deployer.yaml
+|   |       |   |   |           delete.deployment.cache-deployer.yaml
+|   |       |   |   |           delete.role.cache-deployer.yaml
+|   |       |   |   |           delete.rolebinding.cache-deployer.yaml
+|   |       |   |   |           delete.sa.cache-deployer.yaml
+|   |       |   |   |           
+|   |       |   |   \---platform-agnostic-multi-user-k8s-native
+|   |       |   |       |   kustomization.yaml
+|   |       |   |       |   
+|   |       |   |       \---patches
+|   |       |   |               deployment.yaml
+|   |       |   |               mutating-webhook.yaml
+|   |       |   |               role.yaml
+|   |       |   |               service.json
+|   |       |   |               validating-webhook.yaml
+|   |       |   |               
+|   |       |   +---dev
+|   |       |   |   |   api-server-patch.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   
+|   |       |   |   \---postgresql
+|   |       |   |           kustomization.yaml
+|   |       |   |           
+|   |       |   +---dev-kind
+|   |       |   |       forward-local-api-endpoint.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---gcp
+|   |       |   |   |   gcp-configurations-patch.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   params.env
+|   |       |   |   |   
+|   |       |   |   +---cloudsql-proxy
+|   |       |   |   |       cloudsql-proxy-deployment.yaml
+|   |       |   |   |       cloudsql-proxy-sa.yaml
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       mysql-service.yaml
+|   |       |   |   |       
+|   |       |   |   +---inverse-proxy
+|   |       |   |   |       kustomization.yaml
+|   |       |   |   |       proxy-configmap.yaml
+|   |       |   |   |       proxy-deployment.yaml
+|   |       |   |   |       proxy-role.yaml
+|   |       |   |   |       proxy-rolebinding.yaml
+|   |       |   |   |       proxy-sa.yaml
+|   |       |   |   |       
+|   |       |   |   \---minio-gcs-gateway
+|   |       |   |           kustomization.yaml
+|   |       |   |           minio-artifact-secret.env
+|   |       |   |           minio-gcs-gateway-deployment.yaml
+|   |       |   |           minio-gcs-gateway-sa.yaml
+|   |       |   |           minio-gcs-gateway-service.yaml
+|   |       |   |           
+|   |       |   +---openshift
+|   |       |   |   |   README.md
+|   |       |   |   |   
+|   |       |   |   \---base
+|   |       |   |       |   kustomization.yaml
+|   |       |   |       |   route.yaml
+|   |       |   |       |   
+|   |       |   |       \---patches
+|   |       |   |               cache-deployer.yaml
+|   |       |   |               cache-server.yaml
+|   |       |   |               remove-sc-pod.json
+|   |       |   |               remove-sc.json
+|   |       |   |               viewer-crd.yaml
+|   |       |   |               visualizationserver.yaml
+|   |       |   |               
+|   |       |   +---plain
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---plain-multi-user
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---platform-agnostic
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---platform-agnostic-emissary
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---platform-agnostic-multi-user
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---platform-agnostic-multi-user-emissary
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---platform-agnostic-multi-user-legacy
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   \---platform-agnostic-postgresql
+|   |       |           kustomization.yaml
+|   |       |           
+|   |       +---hack
+|   |       |       format.sh
+|   |       |       presubmit.sh
+|   |       |       release.sh
+|   |       |       test.sh
+|   |       |       
+|   |       +---sample
+|   |       |   |   kustomization.yaml
+|   |       |   |   params-db-secret.env
+|   |       |   |   params.env
+|   |       |   |   README.md
+|   |       |   |   
+|   |       |   \---cluster-scoped-resources
+|   |       |           kustomization.yaml
+|   |       |           
+|   |       \---third-party
+|   |           +---application
+|   |           |   |   application-controller-deployment.yaml
+|   |           |   |   application-controller-role.yaml
+|   |           |   |   application-controller-rolebinding.yaml
+|   |           |   |   application-controller-sa.yaml
+|   |           |   |   application-controller-service.yaml
+|   |           |   |   kustomization.yaml
+|   |           |   |   
+|   |           |   \---cluster-scoped
+|   |           |           application-crd.yaml
+|   |           |           kustomization.yaml
+|   |           |           
+|   |           +---argo
+|   |           |   |   Makefile
+|   |           |   |   README.md
+|   |           |   |   
+|   |           |   +---base
+|   |           |   |       kustomization.yaml
+|   |           |   |       params.yaml
+|   |           |   |       workflow-controller-configmap-patch.yaml
+|   |           |   |       workflow-controller-deployment-patch.yaml
+|   |           |   |       
+|   |           |   \---installs
+|   |           |       +---cluster
+|   |           |       |       kustomization.yaml
+|   |           |       |       workflow-controller-clusterrolebinding-patch.json
+|   |           |       |       
+|   |           |       \---namespace
+|   |           |           |   kustomization.yaml
+|   |           |           |   workflow-controller-deployment-patch.json
+|   |           |           |   
+|   |           |           \---cluster-scoped
+|   |           |                   kustomization.yaml
+|   |           |                   
+|   |           +---grafana
+|   |           |       grafana-deployment.yaml
+|   |           |       grafana-role.yaml
+|   |           |       grafana-rolebinding.yaml
+|   |           |       grafana-sa.yaml
+|   |           |       grafana-service.yaml
+|   |           |       kustomization.yaml
+|   |           |       
+|   |           +---metacontroller
+|   |           |   \---base
+|   |           |           cluster-role-binding.yaml
+|   |           |           cluster-role.yaml
+|   |           |           crd.yaml
+|   |           |           kustomization.yaml
+|   |           |           service-account.yaml
+|   |           |           stateful-set.yaml
+|   |           |           
+|   |           +---minio
+|   |           |   +---base
+|   |           |   |       kustomization.yaml
+|   |           |   |       minio-deployment.yaml
+|   |           |   |       minio-pvc.yaml
+|   |           |   |       minio-service.yaml
+|   |           |   |       mlpipeline-minio-artifact-secret.yaml
+|   |           |   |       
+|   |           |   \---options
+|   |           |       \---istio
+|   |           |               istio-authorization-policy.yaml
+|   |           |               kustomization.yaml
+|   |           |               
+|   |           +---mysql
+|   |           |   +---base
+|   |           |   |       kustomization.yaml
+|   |           |   |       mysql-deployment.yaml
+|   |           |   |       mysql-pv-claim.yaml
+|   |           |   |       mysql-service.yaml
+|   |           |   |       mysql-serviceaccount.yaml
+|   |           |   |       
+|   |           |   \---options
+|   |           |       \---istio
+|   |           |               istio-authorization-policy.yaml
+|   |           |               kustomization.yaml
+|   |           |               
+|   |           +---postgresql
+|   |           |   |   README.md
+|   |           |   |   
+|   |           |   \---base
+|   |           |           kustomization.yaml
+|   |           |           pg-deployment.yaml
+|   |           |           pg-pvc.yaml
+|   |           |           pg-secret.yaml
+|   |           |           pg-service.yaml
+|   |           |           pg-serviceaccount.yaml
+|   |           |           
+|   |           \---prometheus
+|   |                   kustomization.yaml
+|   |                   prometheus-configmap.yaml
+|   |                   prometheus-deployment.yaml
+|   |                   prometheus-role.yaml
+|   |                   prometheus-rolebinding.yaml
+|   |                   prometheus-sa.yaml
+|   |                   prometheus-service.yaml
+|   |                   
+|   +---profiles
+|   |   +---pss
+|   |   |       kustomization.yaml
+|   |   |       namespace-labels.yaml
+|   |   |       
+|   |   \---upstream
+|   |       |   README.md
+|   |       |   
+|   |       +---base
+|   |       |   |   kustomization.yaml
+|   |       |   |   namespace-labels.yaml
+|   |       |   |   
+|   |       |   \---patches
+|   |       |           manager.yaml
+|   |       |           
+|   |       +---crd
+|   |       |   |   kustomization.yaml
+|   |       |   |   kustomizeconfig.yaml
+|   |       |   |   
+|   |       |   +---bases
+|   |       |   |       kubeflow.org_profiles.yaml
+|   |       |   |       
+|   |       |   \---patches
+|   |       |           cainjection_in_profiles.yaml
+|   |       |           trivial_conversion_patch.yaml
+|   |       |           webhook_in_profiles.yaml
+|   |       |           
+|   |       +---default
+|   |       |       kustomization.yaml
+|   |       |       manager_auth_proxy_patch.yaml
+|   |       |       manager_prometheus_metrics_patch.yaml
+|   |       |       manager_webhook_patch.yaml
+|   |       |       webhookcainjection_patch.yaml
+|   |       |       
+|   |       +---manager
+|   |       |       kustomization.yaml
+|   |       |       manager.yaml
+|   |       |       service-account.yaml
+|   |       |       
+|   |       +---overlays
+|   |       |   +---kubeflow
+|   |       |   |   |   authorizationpolicy.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   params.yaml
+|   |       |   |   |   service.yaml
+|   |       |   |   |   virtual-service.yaml
+|   |       |   |   |   
+|   |       |   |   \---patches
+|   |       |   |           kfam.yaml
+|   |       |   |           remove-namespace.yaml
+|   |       |   |           
+|   |       |   \---standalone
+|   |       |           kustomization.yaml
+|   |       |           
+|   |       +---prometheus
+|   |       |       kustomization.yaml
+|   |       |       monitor.yaml
+|   |       |       
+|   |       +---rbac
+|   |       |       auth_proxy_client_clusterrole.yaml
+|   |       |       auth_proxy_role.yaml
+|   |       |       auth_proxy_role_binding.yaml
+|   |       |       auth_proxy_service.yaml
+|   |       |       kustomization.yaml
+|   |       |       leader_election_role.yaml
+|   |       |       leader_election_role_binding.yaml
+|   |       |       profile_editor_role.yaml
+|   |       |       profile_viewer_role.yaml
+|   |       |       role.yaml
+|   |       |       role_binding.yaml
+|   |       |       service_account.yaml
+|   |       |       
+|   |       \---samples
+|   |               _v1beta1_profile.yaml
+|   |               _v1_profile.yaml
+|   |               _v1_profile_aws_iam.yaml
+|   |               
+|   +---pvcviewer-controller
+|   |   \---upstream
+|   |       +---base
+|   |       |       kustomization.yaml
+|   |       |       
+|   |       +---certmanager
+|   |       |       certificate.yaml
+|   |       |       kustomization.yaml
+|   |       |       kustomizeconfig.yaml
+|   |       |       
+|   |       +---crd
+|   |       |   |   kustomization.yaml
+|   |       |   |   kustomizeconfig.yaml
+|   |       |   |   
+|   |       |   +---bases
+|   |       |   |       kubeflow.org_pvcviewers.yaml
+|   |       |   |       
+|   |       |   \---patches
+|   |       |           cainjection_in_pvcviewers.yaml
+|   |       |           webhook_in_pvcviewers.yaml
+|   |       |           
+|   |       +---default
+|   |       |       cainjection_patch.yaml
+|   |       |       dnsnames_patch.yaml
+|   |       |       kustomization.yaml
+|   |       |       kustomizeconfig.yaml
+|   |       |       manager_auth_proxy_patch.yaml
+|   |       |       manager_webhook_patch.yaml
+|   |       |       remove_namespace.yaml
+|   |       |       
+|   |       +---manager
+|   |       |       kustomization.yaml
+|   |       |       manager.yaml
+|   |       |       
+|   |       +---prometheus
+|   |       |       kustomization.yaml
+|   |       |       monitor.yaml
+|   |       |       
+|   |       +---rbac
+|   |       |       auth_proxy_client_clusterrole.yaml
+|   |       |       auth_proxy_role.yaml
+|   |       |       auth_proxy_role_binding.yaml
+|   |       |       auth_proxy_service.yaml
+|   |       |       kustomization.yaml
+|   |       |       leader_election_role.yaml
+|   |       |       leader_election_role_binding.yaml
+|   |       |       role.yaml
+|   |       |       role_binding.yaml
+|   |       |       service_account.yaml
+|   |       |       volumesviewer_editor_role.yaml
+|   |       |       volumesviewer_viewer_role.yaml
+|   |       |       
+|   |       +---samples
+|   |       |       kustomization.yaml
+|   |       |       _v1alpha1_pvcviewer.yaml
+|   |       |       
+|   |       \---webhook
+|   |               kustomization.yaml
+|   |               kustomizeconfig.yaml
+|   |               manifests.yaml
+|   |               service.yaml
+|   |               
+|   +---spark
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   sparkapplication_example.yaml
+|   |   |   
+|   |   \---spark-operator
+|   |       +---base
+|   |       |       aggregated-roles.yaml
+|   |       |       kustomization.yaml
+|   |       |       resources.yaml
+|   |       |       
+|   |       \---overlays
+|   |           +---kubeflow
+|   |           |       kustomization.yaml
+|   |           |       
+|   |           \---standalone
+|   |                   kustomization.yaml
+|   |                   
+|   +---tensorboard
+|   |   +---tensorboard-controller
+|   |   |   \---upstream
+|   |   |       +---base
+|   |   |       |   |   kustomization.yaml
+|   |   |       |   |   service_account.yaml
+|   |   |       |   |   
+|   |   |       |   \---patches
+|   |   |       |           add_controller_config.yaml
+|   |   |       |           add_service_account.yaml
+|   |   |       |           
+|   |   |       +---certmanager
+|   |   |       |       certificate.yaml
+|   |   |       |       kustomization.yaml
+|   |   |       |       kustomizeconfig.yaml
+|   |   |       |       
+|   |   |       +---crd
+|   |   |       |   |   kustomization.yaml
+|   |   |       |   |   kustomizeconfig.yaml
+|   |   |       |   |   
+|   |   |       |   +---bases
+|   |   |       |   |       tensorboard.kubeflow.org_tensorboards.yaml
+|   |   |       |   |       
+|   |   |       |   \---patches
+|   |   |       |           cainjection_in_tensorboards.yaml
+|   |   |       |           webhook_in_tensorboards.yaml
+|   |   |       |           
+|   |   |       +---default
+|   |   |       |       kustomization.yaml
+|   |   |       |       manager_auth_proxy_patch.yaml
+|   |   |       |       manager_prometheus_metrics_patch.yaml
+|   |   |       |       manager_webhook_patch.yaml
+|   |   |       |       webhookcainjection_patch.yaml
+|   |   |       |       
+|   |   |       +---manager
+|   |   |       |       controller_manager_config.yaml
+|   |   |       |       kustomization.yaml
+|   |   |       |       manager.yaml
+|   |   |       |       
+|   |   |       +---overlays
+|   |   |       |   +---kubeflow
+|   |   |       |   |   |   kustomization.yaml
+|   |   |       |   |   |   
+|   |   |       |   |   \---patches
+|   |   |       |   |           remove-namespace.yaml
+|   |   |       |   |           
+|   |   |       |   \---standalone
+|   |   |       |           kustomization.yaml
+|   |   |       |           
+|   |   |       +---prometheus
+|   |   |       |       kustomization.yaml
+|   |   |       |       monitor.yaml
+|   |   |       |       
+|   |   |       +---rbac
+|   |   |       |       auth_proxy_client_clusterrole.yaml
+|   |   |       |       auth_proxy_role.yaml
+|   |   |       |       auth_proxy_role_binding.yaml
+|   |   |       |       auth_proxy_service.yaml
+|   |   |       |       kustomization.yaml
+|   |   |       |       leader_election_role.yaml
+|   |   |       |       leader_election_role_binding.yaml
+|   |   |       |       role.yaml
+|   |   |       |       role_binding.yaml
+|   |   |       |       service_account.yaml
+|   |   |       |       
+|   |   |       +---samples
+|   |   |       |       tensorboard_v1alpha1_tensorboard.yaml
+|   |   |       |       
+|   |   |       \---webhook
+|   |   |               kustomization.yaml
+|   |   |               kustomizeconfig.yaml
+|   |   |               manifests.yaml
+|   |   |               service.yaml
+|   |   |               
+|   |   \---tensorboards-web-app
+|   |       \---upstream
+|   |           +---base
+|   |           |       cluster-role-binding.yaml
+|   |           |       cluster-role.yaml
+|   |           |       deployment.yaml
+|   |           |       kustomization.yaml
+|   |           |       params.env
+|   |           |       service-account.yaml
+|   |           |       service.yaml
+|   |           |       
+|   |           \---overlays
+|   |               \---istio
+|   |                       authorization-policy.yaml
+|   |                       destination-rule.yaml
+|   |                       kustomization.yaml
+|   |                       params.yaml
+|   |                       virtual-service.yaml
+|   |                       
+|   +---trainer
+|   |   +---overlays
+|   |   |       kustomization.yaml
+|   |   |       
+|   |   \---upstream
+|   |       +---base
+|   |       |   +---crds
+|   |       |   |       kustomization.yaml
+|   |       |   |       trainer.kubeflow.org_clustertrainingruntimes.yaml
+|   |       |   |       trainer.kubeflow.org_trainingruntimes.yaml
+|   |       |   |       trainer.kubeflow.org_trainjobs.yaml
+|   |       |   |       
+|   |       |   +---manager
+|   |       |   |       kustomization.yaml
+|   |       |   |       manager.yaml
+|   |       |   |       
+|   |       |   +---rbac
+|   |       |   |       kustomization.yaml
+|   |       |   |       role.yaml
+|   |       |   |       role_binding.yaml
+|   |       |   |       service_account.yaml
+|   |       |   |       
+|   |       |   +---runtimes
+|   |       |   |   |   deepspeed_distributed.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   mlx_distributed.yaml
+|   |       |   |   |   mpi_distributed.yaml
+|   |       |   |   |   torch_distributed.yaml
+|   |       |   |   |   
+|   |       |   |   \---torchtune
+|   |       |   |       |   kustomization.yaml
+|   |       |   |       |   
+|   |       |   |       \---llama3_2
+|   |       |   |               llama3_2_1B.yaml
+|   |       |   |               llama3_2_3B.yaml
+|   |       |   |               
+|   |       |   \---webhook
+|   |       |           kustomization.yaml
+|   |       |           kustomizeconfig.yaml
+|   |       |           manifests.yaml
+|   |       |           patch.yaml
+|   |       |           
+|   |       +---overlays
+|   |       |   +---kubeflow-platform
+|   |       |   |   |   kubeflow-trainer-roles.yaml
+|   |       |   |   |   kustomization.yaml
+|   |       |   |   |   role_binding.yaml
+|   |       |   |   |   
+|   |       |   |   \---patches
+|   |       |   |           remove-namespace.yaml
+|   |       |   |           
+|   |       |   +---manager
+|   |       |   |       kustomization.yaml
+|   |       |   |       namespace.yaml
+|   |       |   |       
+|   |       |   \---runtimes
+|   |       |           kustomization.yaml
+|   |       |           
+|   |       \---third-party
+|   |           \---jobset
+|   |               |   kustomization.yaml
+|   |               |   
+|   |               \---patches
+|   |                       jobset_remove_namespace.yaml
+|   |                       
+|   +---training-operator
+|   |   \---upstream
+|   |       +---base
+|   |       |   |   deployment.yaml
+|   |       |   |   kustomization.yaml
+|   |       |   |   service.yaml
+|   |       |   |   
+|   |       |   +---crds
+|   |       |   |       kubeflow.org_jaxjobs.yaml
+|   |       |   |       kubeflow.org_mpijobs.yaml
+|   |       |   |       kubeflow.org_paddlejobs.yaml
+|   |       |   |       kubeflow.org_pytorchjobs.yaml
+|   |       |   |       kubeflow.org_tfjobs.yaml
+|   |       |   |       kubeflow.org_xgboostjobs.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   +---rbac
+|   |       |   |       cluster-role-binding.yaml
+|   |       |   |       role.yaml
+|   |       |   |       service-account.yaml
+|   |       |   |       
+|   |       |   \---webhook
+|   |       |           kustomization.yaml
+|   |       |           kustomizeconfig.yaml
+|   |       |           manifests.yaml
+|   |       |           patch.yaml
+|   |       |           
+|   |       +---overlays
+|   |       |   +---kubeflow
+|   |       |   |       kubeflow-training-roles.yaml
+|   |       |   |       kustomization.yaml
+|   |       |   |       
+|   |       |   \---standalone
+|   |       |           kustomization.yaml
+|   |       |           namespace.yaml
+|   |       |           
+|   |       \---v2
+|   |           +---base
+|   |           |   +---crds
+|   |           |   |       kubeflow.org_clustertrainingruntimes.yaml
+|   |           |   |       kubeflow.org_trainingruntimes.yaml
+|   |           |   |       kubeflow.org_trainjobs.yaml
+|   |           |   |       kustomization.yaml
+|   |           |   |       
+|   |           |   +---manager
+|   |           |   |       kustomization.yaml
+|   |           |   |       manager.yaml
+|   |           |   |       
+|   |           |   +---rbac
+|   |           |   |       kustomization.yaml
+|   |           |   |       role.yaml
+|   |           |   |       role_binding.yaml
+|   |           |   |       service_account.yaml
+|   |           |   |       
+|   |           |   +---runtimes
+|   |           |   |   \---pre-training
+|   |           |   |           kustomization.yaml
+|   |           |   |           torch-distributed.yaml
+|   |           |   |           
+|   |           |   \---webhook
+|   |           |           kustomization.yaml
+|   |           |           kustomizeconfig.yaml
+|   |           |           manifests.yaml
+|   |           |           patch.yaml
+|   |           |           
+|   |           \---overlays
+|   |               +---only-manager
+|   |               |       kustomization.yaml
+|   |               |       namespace.yaml
+|   |               |       
+|   |               +---only-runtimes
+|   |               |       kustomization.yaml
+|   |               |       
+|   |               \---standalone
+|   |                       kustomization.yaml
+|   |                       namespace.yaml
+|   |                       
+|   \---volumes-web-app
+|       \---upstream
+|           +---base
+|           |       cluster-role-binding.yaml
+|           |       cluster-role.yaml
+|           |       deployment.yaml
+|           |       kustomization.yaml
+|           |       params.env
+|           |       service-account.yaml
+|           |       service.yaml
+|           |       viewer-spec.yaml
+|           |       
+|           \---overlays
+|               \---istio
+|                       authorization-policy.yaml
+|                       destination-rule.yaml
+|                       kustomization.yaml
+|                       params.yaml
+|                       virtual-service.yaml
+|                       
++---common
+|   +---cert-manager
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   
+|   |   +---base
+|   |   |   |   kustomization.yaml
+|   |   |   |   namespace-patch.yaml
+|   |   |   |   
+|   |   |   \---upstream
+|   |   |           cert-manager.yaml
+|   |   |           
+|   |   \---kubeflow-issuer
+|   |       \---base
+|   |               cluster-issuer.yaml
+|   |               kustomization.yaml
+|   |               
+|   +---dex
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   
+|   |   +---base
+|   |   |       config-map.yaml
+|   |   |       crds.yaml
+|   |   |       deployment.yaml
+|   |   |       dex-passwords.yaml
+|   |   |       kustomization.yaml
+|   |   |       namespace.yaml
+|   |   |       secret_params.env
+|   |   |       service.yaml
+|   |   |       
+|   |   \---overlays
+|   |       +---istio
+|   |       |       kustomization.yaml
+|   |       |       virtual-service.yaml
+|   |       |       
+|   |       \---oauth2-proxy
+|   |               config-map.yaml
+|   |               kustomization.yaml
+|   |               
+|   +---istio
+|   |   |   profile-overlay.yaml
+|   |   |   profile.yaml
+|   |   |   README.md
+|   |   |   split-istio-packages
+|   |   |   
+|   |   +---cluster-local-gateway
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   +---base
+|   |   |   |   |   cluster-local-gateway.yaml
+|   |   |   |   |   gateway-authorizationpolicy.yaml
+|   |   |   |   |   gateway.yaml
+|   |   |   |   |   kustomization.yaml
+|   |   |   |   |   
+|   |   |   |   \---patches
+|   |   |   |           remove-pdb.yaml
+|   |   |   |           seccomp-cluster-local-gateway.yaml
+|   |   |   |           
+|   |   |   \---overlays
+|   |   |       \---m2m-auth
+|   |   |               cluster-local-gateway-authorizationpolicy-deny.yaml
+|   |   |               cluster-local-gateway-authorizationpolicy-patch.yaml
+|   |   |               cluster-local-gateway-requestauthentication.yaml
+|   |   |               kustomization.yaml
+|   |   |               README.md
+|   |   |               
+|   |   +---istio-crds
+|   |   |   \---base
+|   |   |           crd.yaml
+|   |   |           kustomization.yaml
+|   |   |           
+|   |   +---istio-install
+|   |   |   +---base
+|   |   |   |   |   deny_all_authorizationpolicy.yaml
+|   |   |   |   |   gateway.yaml
+|   |   |   |   |   gateway_authorizationpolicy.yaml
+|   |   |   |   |   install.yaml
+|   |   |   |   |   kustomization.yaml
+|   |   |   |   |   sidecar-prune-egress.yaml
+|   |   |   |   |   
+|   |   |   |   \---patches
+|   |   |   |           disable-debugging.yaml
+|   |   |   |           istio-configmap-disable-tracing.yaml
+|   |   |   |           istio-ingressgateway-remove-pdb.yaml
+|   |   |   |           istiod-remove-pdb.yaml
+|   |   |   |           seccomp-istio-ingressgateway.yaml
+|   |   |   |           seccomp-istiod.yaml
+|   |   |   |           service.yaml
+|   |   |   |           
+|   |   |   \---overlays
+|   |   |       +---gke
+|   |   |       |       gke-cni-patch.yaml
+|   |   |       |       kustomization.yaml
+|   |   |       |       
+|   |   |       +---insecure
+|   |   |       |       configmap-patch.yaml
+|   |   |       |       kustomization.yaml
+|   |   |       |       namespaces-pss-privileged.yaml
+|   |   |       |       
+|   |   |       \---oauth2-proxy
+|   |   |               kustomization.yaml
+|   |   |               
+|   |   +---istio-namespace
+|   |   |   \---base
+|   |   |           kustomization.yaml
+|   |   |           namespace.yaml
+|   |   |           
+|   |   \---kubeflow-istio-resources
+|   |       \---base
+|   |               cluster-roles.yaml
+|   |               kf-istio-resources.yaml
+|   |               kustomization.yaml
+|   |               
+|   +---knative
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   
+|   |   +---knative-eventing
+|   |   |   \---base
+|   |   |       |   kustomization.yaml
+|   |   |       |   
+|   |   |       +---patches
+|   |   |       |       clusterrole-patch.yaml
+|   |   |       |       
+|   |   |       \---upstream
+|   |   |               eventing-core.yaml
+|   |   |               in-memory-channel.yaml
+|   |   |               mt-channel-broker.yaml
+|   |   |               
+|   |   +---knative-eventing-post-install-jobs
+|   |   |   \---base
+|   |   |           eventing-post-install.yaml
+|   |   |           kustomization.yaml
+|   |   |           
+|   |   +---knative-serving
+|   |   |   +---base
+|   |   |   |   |   istio-authorization-policy.yaml
+|   |   |   |   |   kustomization.yaml
+|   |   |   |   |   
+|   |   |   |   +---patches
+|   |   |   |   |       config-deployment.yaml
+|   |   |   |   |       config-istio.yaml
+|   |   |   |   |       knative-serving-namespaced-admin.yaml
+|   |   |   |   |       knative-serving-namespaced-edit.yaml
+|   |   |   |   |       knative-serving-namespaced-view.yaml
+|   |   |   |   |       namespace-injection.yaml
+|   |   |   |   |       remove-gateway.yaml
+|   |   |   |   |       seccomp.yaml
+|   |   |   |   |       service-labels.yaml
+|   |   |   |   |       sidecar-injection.yaml
+|   |   |   |   |       
+|   |   |   |   \---upstream
+|   |   |   |           net-istio.yaml
+|   |   |   |           serving-core.yaml
+|   |   |   |           
+|   |   |   \---overlays
+|   |   |       \---gateways
+|   |   |           |   kustomization.yaml
+|   |   |           |   
+|   |   |           \---patches
+|   |   |                   config-domain.yaml
+|   |   |                   gateway-selector-in-istio-system.yaml
+|   |   |                   gateway-selector-in-knative-serving.yaml
+|   |   |                   
+|   |   \---knative-serving-post-install-jobs
+|   |       \---base
+|   |               kustomization.yaml
+|   |               serving-post-install-jobs.yaml
+|   |               
+|   +---kubeflow-namespace
+|   |   \---base
+|   |           kustomization.yaml
+|   |           namespace.yaml
+|   |           
+|   +---kubeflow-roles
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   
+|   |   \---base
+|   |           cluster-roles.yaml
+|   |           kustomization.yaml
+|   |           
+|   +---networkpolicies
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   
+|   |   \---base
+|   |           cache-server.yaml
+|   |           centraldashboard.yaml
+|   |           cert-manager-webhook.yaml
+|   |           default-allow-same-namespace-auth.yaml
+|   |           default-allow-same-namespace-cert-manager.yaml
+|   |           default-allow-same-namespace-istio-system.yaml
+|   |           default-allow-same-namespace-knative-serving.yaml
+|   |           default-allow-same-namespace-kubeflow-system.yaml
+|   |           default-allow-same-namespace-oauth2-proxy.yaml
+|   |           default-allow-same-namespace.yaml
+|   |           jobset-webhook-kubeflow-system.yaml
+|   |           jupyter-web-app.yaml
+|   |           katib-controller.yaml
+|   |           katib-db-manager.yaml
+|   |           katib-ui.yaml
+|   |           kserve-models-web-app.yaml
+|   |           kserve.yaml
+|   |           kustomization.yaml
+|   |           metadata-envoy.yaml
+|   |           metadata-grpc-server.yaml
+|   |           minio.yaml
+|   |           ml-pipeline-ui.yaml
+|   |           ml-pipeline.yaml
+|   |           model-catalog.yaml
+|   |           model-registry-ui.yaml
+|   |           model-registry.yaml
+|   |           poddefaults.yaml
+|   |           pvcviewer-webhook.yaml
+|   |           spark-operator-webhook.yaml
+|   |           tensorboards-web-app.yaml
+|   |           trainer-webhook-kubeflow-system.yaml
+|   |           training-operator-webhook.yaml
+|   |           volumes-web-app.yaml
+|   |           
+|   +---oauth2-proxy
+|   |   |   OWNERS
+|   |   |   README.md
+|   |   |   
+|   |   +---base
+|   |   |       deployment.yaml
+|   |   |       kubeflow-logo.svg
+|   |   |       kustomization.yaml
+|   |   |       namespace.yaml
+|   |   |       oauth2_proxy.cfg
+|   |   |       README.md
+|   |   |       service.yaml
+|   |   |       serviceaccount.yaml
+|   |   |       virtualservice.yaml
+|   |   |       
+|   |   +---components
+|   |   |   |   kubeflow_auth_diagram.svg
+|   |   |   |   oauth2-flow.svg
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   +---allow-unauthenticated-issuer-discovery
+|   |   |   |       clusterrolebinding.unauthenticated-oidc-viewer.yaml
+|   |   |   |       kustomization.yaml
+|   |   |   |       README.md
+|   |   |   |       
+|   |   |   +---central-dashboard
+|   |   |   |   |   kustomization.yaml
+|   |   |   |   |   
+|   |   |   |   \---patches
+|   |   |   |           deployment.logout-url.yaml
+|   |   |   |           
+|   |   |   +---cluster-jwks-proxy
+|   |   |   |       cluster-jwks-proxy.yaml
+|   |   |   |       kustomization.yaml
+|   |   |   |       README.md
+|   |   |   |       
+|   |   |   +---istio-external-auth
+|   |   |   |       authorizationpolicy.istio-ingressgateway-oauth2-proxy.cloudflare.yaml
+|   |   |   |       authorizationpolicy.istio-ingressgateway-oauth2-proxy.yaml
+|   |   |   |       authorizationpolicy.istio-ingressgateway-require-jwt.cloudflare.yaml
+|   |   |   |       authorizationpolicy.istio-ingressgateway-require-jwt.yaml
+|   |   |   |       kustomization.yaml
+|   |   |   |       README.md
+|   |   |   |       requestauthentication.dex-jwt.yaml
+|   |   |   |       
+|   |   |   +---istio-external-auth-patches
+|   |   |   |   |   kustomization.yaml
+|   |   |   |   |   README.md
+|   |   |   |   |   
+|   |   |   |   \---patches
+|   |   |   |           cm.enable-oauth2-proxy.yaml
+|   |   |   |           deployment.jwt-refresh-interval.yaml
+|   |   |   |           
+|   |   |   \---istio-m2m
+|   |   |           kustomization.yaml
+|   |   |           README.md
+|   |   |           requestauthentication.yaml
+|   |   |           
+|   |   \---overlays
+|   |       +---m2m-dex-and-eks
+|   |       |       kustomization.yaml
+|   |       |       
+|   |       +---m2m-dex-and-kind
+|   |       |       kustomization.yaml
+|   |       |       
+|   |       \---m2m-dex-only
+|   |               kustomization.yaml
+|   |               
+|   +---security
+|   |   \---PSS
+|   |       \---dynamic
+|   |           \---baseline
+|   |                   kustomization.yaml
+|   |                   namespace-labels.yaml
+|   |                   
+|   \---user-namespace
+|       \---base
+|               kustomization.yaml
+|               params.env
+|               params.yaml
+|               profile-instance.yaml
+|               
++---example
+|       kustomization.yaml
+|       
++---experimental
+|   |   OWNERS
+|   |   README.md
+|   |   
+|   +---helm
+|   |   \---charts
+|   |       +---katib
+|   |       |   |   .helmignore
+|   |       |   |   Chart.yaml
+|   |       |   |   README.md
+|   |       |   |   values.yaml
+|   |       |   |   
+|   |       |   +---ci
+|   |       |   |       values-cert-manager.yaml
+|   |       |   |       values-enterprise.yaml
+|   |       |   |       values-external-db.yaml
+|   |       |   |       values-kubeflow.yaml
+|   |       |   |       values-leader-election.yaml
+|   |       |   |       values-openshift.yaml
+|   |       |   |       values-postgres.yaml
+|   |       |   |       values-production.yaml
+|   |       |   |       values-standalone.yaml
+|   |       |   |       
+|   |       |   +---crds
+|   |       |   |       experiment.yaml
+|   |       |   |       suggestion.yaml
+|   |       |   |       trial.yaml
+|   |       |   |       
+|   |       |   \---templates
+|   |       |       |   _helpers.tpl
+|   |       |       |   
+|   |       |       +---autoscaling
+|   |       |       |       hpa.yaml
+|   |       |       |       
+|   |       |       +---config
+|   |       |       |       configmap.yaml
+|   |       |       |       
+|   |       |       +---controller
+|   |       |       |       deployment.yaml
+|   |       |       |       leader-election-rbac.yaml
+|   |       |       |       rbac.yaml
+|   |       |       |       service.yaml
+|   |       |       |       serviceaccount.yaml
+|   |       |       |       trial-templates-configmap.yaml
+|   |       |       |       
+|   |       |       +---database
+|   |       |       |       mysql-deployment.yaml
+|   |       |       |       mysql-pvc.yaml
+|   |       |       |       mysql-service.yaml
+|   |       |       |       postgres-deployment.yaml
+|   |       |       |       postgres-pvc.yaml
+|   |       |       |       postgres-service.yaml
+|   |       |       |       secret.yaml
+|   |       |       |       
+|   |       |       +---db-manager
+|   |       |       |       deployment.yaml
+|   |       |       |       service.yaml
+|   |       |       |       
+|   |       |       +---istio
+|   |       |       |       authorization-policy.yaml
+|   |       |       |       virtual-service.yaml
+|   |       |       |       
+|   |       |       +---monitoring
+|   |       |       |       servicemonitor.yaml
+|   |       |       |       
+|   |       |       +---namespace
+|   |       |       |       namespace.yaml
+|   |       |       |       
+|   |       |       +---rbac
+|   |       |       |       kubeflow-roles.yaml
+|   |       |       |       
+|   |       |       +---security
+|   |       |       |       network-policy.yaml
+|   |       |       |       pod-disruption-budget.yaml
+|   |       |       |       
+|   |       |       +---ui
+|   |       |       |       deployment.yaml
+|   |       |       |       rbac.yaml
+|   |       |       |       service.yaml
+|   |       |       |       serviceaccount.yaml
+|   |       |       |       
+|   |       |       \---webhook
+|   |       |               certificate.yaml
+|   |       |               mutating-webhook.yaml
+|   |       |               validating-webhook.yaml
+|   |       |               
+|   |       +---kserve-models-web-app
+|   |       |   |   .helmignore
+|   |       |   |   Chart.yaml
+|   |       |   |   README.md
+|   |       |   |   values.yaml
+|   |       |   |   
+|   |       |   \---templates
+|   |       |       |   configmap.yaml
+|   |       |       |   deployment.yaml
+|   |       |       |   service.yaml
+|   |       |       |   _helpers.tpl
+|   |       |       |   
+|   |       |       +---istio
+|   |       |       |       authorizationpolicy.yaml
+|   |       |       |       virtualservice.yaml
+|   |       |       |       
+|   |       |       \---rbac
+|   |       |               clusterrole.yaml
+|   |       |               clusterrolebinding.yaml
+|   |       |               serviceaccount.yaml
+|   |       |               
+|   |       \---model-registry
+|   |           |   .helmignore
+|   |           |   Chart.yaml
+|   |           |   README.md
+|   |           |   values.yaml
+|   |           |   
+|   |           +---ci
+|   |           |       ci-values.yaml
+|   |           |       values-controller-full.yaml
+|   |           |       values-controller-manager.yaml
+|   |           |       values-controller-network-policy.yaml
+|   |           |       values-controller-prometheus.yaml
+|   |           |       values-controller-rbac.yaml
+|   |           |       values-controller.yaml
+|   |           |       values-csi.yaml
+|   |           |       values-db.yaml
+|   |           |       values-istio.yaml
+|   |           |       values-postgres.yaml
+|   |           |       values-production.yaml
+|   |           |       values-standalone.yaml
+|   |           |       values-ui-integrated.yaml
+|   |           |       values-ui-istio.yaml
+|   |           |       values-ui-standalone.yaml
+|   |           |       values-ui.yaml
+|   |           |       
+|   |           \---templates
+|   |               |   _helpers.tpl
+|   |               |   
+|   |               +---controller
+|   |               |       deployment.yaml
+|   |               |       metrics-service.yaml
+|   |               |       service.yaml
+|   |               |       
+|   |               +---database
+|   |               |   +---mysql
+|   |               |   |       configmap.yaml
+|   |               |   |       deployment.yaml
+|   |               |   |       pvc.yaml
+|   |               |   |       secret.yaml
+|   |               |   |       service.yaml
+|   |               |   |       
+|   |               |   \---postgres
+|   |               |           configmap.yaml
+|   |               |           deployment.yaml
+|   |               |           pvc.yaml
+|   |               |           secret.yaml
+|   |               |           service.yaml
+|   |               |           
+|   |               +---istio
+|   |               |       authorizationpolicy.yaml
+|   |               |       destinationrule.yaml
+|   |               |       virtualservice.yaml
+|   |               |       
+|   |               +---monitoring
+|   |               |       servicemonitor.yaml
+|   |               |       
+|   |               +---rbac
+|   |               |       controller-rbac.yaml
+|   |               |       
+|   |               +---security
+|   |               |       clusterstoragecontainer.yaml
+|   |               |       networkpolicy.yaml
+|   |               |       
+|   |               +---server
+|   |               |       configmap.yaml
+|   |               |       deployment.yaml
+|   |               |       service.yaml
+|   |               |       serviceaccount.yaml
+|   |               |       
+|   |               \---ui
+|   |                       auth-proxy-configmap.yaml
+|   |                       dashboard-rbac.yaml
+|   |                       deployment.yaml
+|   |                       istio-authorizationpolicy.yaml
+|   |                       istio-destinationrule.yaml
+|   |                       istio-virtualservice.yaml
+|   |                       rbac.yaml
+|   |                       service.yaml
+|   |                       serviceaccount.yaml
+|   |                       
+|   +---ray
+|   |   |   Makefile
+|   |   |   OWNERS
+|   |   |   raycluster_example.yaml
+|   |   |   README.md
+|   |   |   test.sh
+|   |   |   UPGRADE.md
+|   |   |   
+|   |   +---assets
+|   |   |       architecture.svg
+|   |   |       map-of-ray.png
+|   |   |       
+|   |   \---kuberay-operator
+|   |       +---base
+|   |       |       aggregated-roles.yaml
+|   |       |       kustomization.yaml
+|   |       |       resources.yaml
+|   |       |       
+|   |       \---overlays
+|   |           +---kubeflow
+|   |           |       disable-injection.yaml
+|   |           |       kustomization.yaml
+|   |           |       pss-security-context.yaml
+|   |           |       
+|   |           \---standalone
+|   |                   kustomization.yaml
+|   |                   
+|   \---seaweedfs
+|       |   OWNERS
+|       |   README.md
+|       |   test.sh
+|       |   UPDGRADE.md
+|       |   
+|       +---base
+|       |   |   kustomization.yaml
+|       |   |   minio-service-patch.yaml
+|       |   |   
+|       |   +---argo-workflow-controller
+|       |   |       workflow-controller-configmap-patch.yaml
+|       |   |       
+|       |   +---pipeline-profile-controller
+|       |   |       deployment.yaml
+|       |   |       sync.py
+|       |   |       
+|       |   \---seaweedfs
+|       |           kustomization.yaml
+|       |           seaweedfs-create-admin-user-job.yaml
+|       |           seaweedfs-deployment.yaml
+|       |           seaweedfs-networkpolicy.yaml
+|       |           seaweedfs-pvc.yaml
+|       |           seaweedfs-service-account.yaml
+|       |           seaweedfs-service.yaml
+|       |           
+|       \---istio
+|               istio-authorization-policy.yaml
+|               kustomization.yaml
+|               
++---proposals
+|       20200913-rootlessKubeflow.md
+|       20220926-contrib-component-guidelines.md
+|       20230323-end-to-end-testing.md
+|       20240606-jwt-handling.md
+|       README.md
+|       
++---scripts
+|       library.sh
+|       synchronize-dex-manifests.sh
+|       synchronize-istio-manifests.sh
+|       synchronize-katib-manifests.sh
+|       synchronize-knative-manifests.sh
+|       synchronize-kserve-kserve-manifests.sh
+|       synchronize-kserve-web-application-manifests.sh
+|       synchronize-kubeflow-manifests.sh
+|       synchronize-model-registry-manifests.sh
+|       synchronize-oauth2-proxy-manifests.sh
+|       synchronize-pipelines-manifests.sh
+|       synchronize-spark-operator-manifests.sh
+|       synchronize-trainer-manifests.sh
+|       synchronize-training-operator-manifests.sh
+|       template.sh
+|       
+\---tests
+    |   argo_cli_install.sh
+    |   central_dashboard_install.sh
+    |   cert_manager_install.sh
+    |   dex_install.sh
+    |   dex_login_test.py
+    |   helm_kustomize_compare.py
+    |   helm_kustomize_compare.sh
+    |   helm_kustomize_compare_all.sh
+    |   install_KinD_create_KinD_cluster_install_kustomize.sh
+    |   istio-cni_install.sh
+    |   istio_dummy_deployment.yaml
+    |   katib_install.sh
+    |   katib_test.sh
+    |   katib_test.yaml
+    |   knative_authentication_test.sh
+    |   knative_install.sh
+    |   kserve_complete_authentication_test.sh
+    |   kserve_install.sh
+    |   kserve_jwt_authentication_test.sh
+    |   kserve_setup_external_access.sh
+    |   kserve_test.sh
+    |   kserve_test.yaml
+    |   kubectl_install.sh
+    |   kubeflow_profile_install.sh
+    |   kustomize_install.sh
+    |   metrics-server_install.sh
+    |   metrics-server_resource_table.py
+    |   multi_tenancy_install.sh
+    |   notebook.test.kubeflow-user-example.com.yaml
+    |   oauth2-proxy_install.sh
+    |   oauth2_dex_credentials.sh
+    |   pipelines_install.sh
+    |   pipelines_swfs_install.sh
+    |   pipeline_run_and_wait_kubeflow.py
+    |   pipeline_test.py
+    |   pipeline_v1_test.py
+    |   pipeline_v2_test.py
+    |   poddefaults.access-ml-pipeline.kubeflow-user-example-com.yaml
+    |   port_forward_gateway.sh
+    |   PSS_enable.sh
+    |   README.md
+    |   s3_helper_test.py
+    |   spark_install.sh
+    |   spark_test.sh
+    |   swfs_namespace_isolation_test.sh
+    |   trainer_install.sh
+    |   trainer_job.yaml
+    |   trainer_test.sh
+    |   training_operator_install.sh
+    |   training_operator_job.yaml
+    |   training_operator_test.sh
+    |   trivy_install.sh
+    |   trivy_scan.py
+    |   volumes_web_application_install.sh
+    |   volumes_web_application_test.sh
+    |   
+    \---kserve
+        |   kserve-external-access.yaml
+        |   requirements.txt
+        |   test_sklearn.py
+        |   utils.py
+        |   
+        \---data
+                iris_input.json
+                
