@@ -12,3 +12,6 @@ docker build -t iris-save:latest -f .\components\Dockerfile.save .\components
 
 # Deploy
 docker build -t iris-deploy:latest -f .\components\Dockerfile.deploy .\components
+
+2️⃣ If You’re Using a Single Dockerfile for All Components
+docker build -t iris-pipeline-all:latest .
